@@ -1,4 +1,5 @@
-from src.langgraphagenticai.main import load_langgraph_agenticai_app
+from src.langgraphagenticai.main import Main
+sp=Main()
 
 if __name__ == "__main__":
-    load_langgraph_agenticai_app() 
+    sp.load_langgraph_agenticai_app() 

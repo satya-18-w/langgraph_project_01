@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
-from src.langgraphagenticai.main import load_langgraph_agenticai_app
+# from src.langgraphagenticai.main import Main
 import streamlit as st
 
 class GroqLLM:
@@ -10,14 +10,17 @@ class GroqLLM:
         
     def get_groq_llm(self):
         try:
-            groq_api_key=self.user_controls["GROQ_API_KEY"]
+            groq_api_key=self.user_controls["CHATGROQ_API_KEY"]
             selected_groq_model=self.user_controls["selected_groq_model"]
-            if groq_api_key == "" or os.environ["GROQ_API_KEY"] == "":
+            if groq_api_key == "":
                 st.error("Please enter the groq api key")
                 
-            llm=ChatGroq(api_key=groq_api_key,model=selected_groq_model)
+            load_dotenv()
+            os.environ["GROQ_API_KEY"]=groq_api_key
+            llm=ChatGroq(model=selected_groq_model)
             return llm
         except Exception as e:
             raise ValueError(f"Error occured with Exception {e}")
+        return
         
         
